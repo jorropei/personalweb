@@ -1,0 +1,111 @@
+---
+import ExperienceCard from './ExperienceCard.astro';
+
+const experiences = [
+  {
+    title: "Product Specialist",
+    company: "Delivery Hero",
+    period: "2022 - present",
+    logo: "/DHlogo.png",
+    description: [
+      "Directed large-scale rebranding across 14 consumer apps, 9 websites, and several internal tools for 9 countries, aligning 500+ contributors and driving consistency and brand integrity.",
+      "Drove product discovery and roadmap definition by leading user research and identifying opportunities for growth, resulting in the successful launch of 3 impactful A/B tests that optimized conversion rates for Search and swimlanes components.",
+      "Created from scratch a data driven performance tracking tool used at company level, leveraging BigQuery and Looker skills to improve team efficiency and transparency."
+    ],
+    isCurrent: true
+  },
+  {
+    title: "Strategy Project Manager",
+    company: "foodpanda",
+    period: "2021 - 2022",
+    logo: "/foodpandalogo.svg",
+    description: [
+      "Directed the darkstores business expansion all over Germany.",
+      "Improved the CX by coordinating several projects related to product content (images and labelling)."
+    ]
+  },
+  {
+    title: "Product Associate",
+    company: "Delivery Hero",
+    period: "2021 - 2021",
+    logo: "/DHlogo.png",
+    description: [
+      "Product owner for Toku, Vonage, Twilio, Twilio Flex and 8x8 in the Product Service team. Tools used by +5,000 users around the globe.",
+      "Owned feature request, feature parity and backlog prioritisation."
+    ]
+  },
+  {
+    title: "Operations Intern",
+    company: "N26",
+    period: "2020 - 2021",
+    logo: "/n26.png",
+    description: [
+      "Implementation of software tools to increase operational efficiency.",
+      "Managed the entity's stakeholders communications with the Public financial regulatory institutions.",
+      "Gathering and analysis of huge sets of data to find anti money laundering and fraudulent patterns."
+    ]
+  }
+];
+---
+
+<div class="experience-section">
+  <div class="experience-grid">
+    {experiences.map((experience) => (
+      <div class="card-wrapper">
+        <ExperienceCard {...experience} />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .experience-section {
+    width: 100%;
+    overflow-x: auto;
+    padding: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .experience-section::-webkit-scrollbar {
+    display: none;
+  }
+
+  .experience-grid {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+    width: max-content;
+  }
+
+  .card-wrapper {
+    width: calc((100vw - 6rem) / 2);
+    max-width: 400px;
+    min-width: 280px;
+    height: auto;
+    min-height: 320px;
+  }
+
+  .card-wrapper :global(.experience-card) {
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .card-wrapper {
+      width: 85vw;
+      min-width: 85vw;
+    }
+
+    .experience-grid {
+      gap: 0.75rem;
+    }
+  }
+</style>

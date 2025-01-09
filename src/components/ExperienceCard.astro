@@ -1,0 +1,83 @@
+---
+interface Props {
+  title: string;
+  company: string;
+  period: string;
+  description: string[];
+  logo: string;
+  isCurrent?: boolean;
+}
+
+const { 
+  title, 
+  company, 
+  period, 
+  description, 
+  logo, 
+  isCurrent = false
+} = Astro.props;
+---
+
+<div class="experience-card">
+  <div class="card-preview">
+    <img src={logo} alt={`${company} logo`} class={`company-logo ${isCurrent ? 'current' : ''}`} />
+    <h3 class="text-xl font-semibold mb-2">{title}</h3>
+    <p class="text-[var(--apple-blue)] text-base mb-1">{company}</p>
+    <p class="text-gray-400 text-sm mb-4">{period}</p>
+    <ul class="space-y-2 preview-content">
+      {description.map(item => (
+        <li class="text-gray-300 text-sm leading-relaxed">{item}</li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .experience-card {
+    position: relative;
+    height: 100%;
+  }
+
+  .card-preview {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 1.25rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .company-logo {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  .company-logo.current {
+    filter: drop-shadow(0 0 12px rgba(var(--apple-blue-rgb), 0.3));
+  }
+
+  .preview-content {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  @media (max-width: 768px) {
+    .card-preview {
+      padding: 1rem;
+    }
+
+    .company-logo {
+      width: 40px;
+      height: 40px;
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+</style>
